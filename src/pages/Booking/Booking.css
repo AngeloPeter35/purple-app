@@ -1,0 +1,485 @@
+/* src/pages/Booking/Booking.css - Booking Page styling */
+
+/* Base Page Layout */
+.booking-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-primary); /* Use primary background from theme */
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+}
+
+@media (max-width: 767px) {
+  .booking-page-container {
+    padding: 1.5rem 1rem;
+    min-height: calc(100vh - 60px);
+  }
+}
+
+.no-booking-item-message {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  padding: 3rem;
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.back-to-equipment-button {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  background-color: var(--purple-main);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.back-to-equipment-button:hover {
+  opacity: 0.9;
+}
+
+.booking-content {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 991px) {
+  .booking-content {
+    flex-direction: column;
+  }
+}
+
+/* Left Section: Main Item Details & Rental Period & KRA PIN */
+.booking-details-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  min-width: 0;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Main Item Header */
+.main-item-header {
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.main-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.main-item-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.main-item-name {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.main-item-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--purple-main);
+  margin: 0.25rem 0 0;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  flex-shrink: 0;
+}
+
+.quantity-button {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-button .MuiSvgIcon-root {
+  font-size: 1.5rem;
+  color: var(--purple-main);
+}
+
+.quantity-button:hover .MuiSvgIcon-root {
+  color: var(--purple-light);
+}
+
+.quantity-display {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0 0.5rem;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+.delete-button .MuiSvgIcon-root {
+  font-size: 1.5rem;
+}
+
+.delete-button:hover .MuiSvgIcon-root {
+  color: var(--availability-out-of-stock-text);
+}
+
+/* Rental Period Section */
+.rental-period-section {
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.date-pickers {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.date-input-group {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.date-input-group label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.date-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  padding-right: 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.date-input:focus {
+  border-color: var(--purple-main);
+  box-shadow: 0 0 0 2px var(--input-focus-shadow);
+  outline: none;
+}
+
+.input-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--purple-main);
+  font-size: 1.25rem;
+  pointer-events: none;
+}
+
+/* KRA PIN Information Section */
+.kra-pin-section {
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.kra-info-message {
+  background-color: var(--purple-bg-light);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.kra-info-message.invalid {
+  background-color: var(--availability-out-of-stock-bg);
+  border-color: var(--availability-out-of-stock-text);
+}
+
+.kra-info-message .info-icon {
+  color: var(--purple-main);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.kra-info-message.invalid .info-icon {
+  color: var(--availability-out-of-stock-text);
+}
+
+.kra-info-text {
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.kra-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kra-input:focus {
+  border-color: var(--purple-main);
+  box-shadow: 0 0 0 2px var(--input-focus-shadow);
+  outline: none;
+}
+
+.kra-input.invalid {
+  border-color: var(--availability-out-of-stock-text);
+}
+
+.kra-error {
+  color: var(--availability-out-of-stock-text);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  width: 100%;
+  font-weight: 500;
+}
+
+/* Right Section: Order Summary Sidebar */
+.order-summary-sidebar {
+  flex: 1;
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: calc(
+    2.5rem + 80px
+  ); /* Position below navbar, adjusted in App.css content-area */
+  align-self: flex-start;
+  min-width: 280px;
+}
+
+@media (max-width: 991px) {
+  .order-summary-sidebar {
+    width: 100%;
+    position: static;
+    top: auto;
+  }
+}
+
+.summary-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.summary-details p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-details p:last-of-type {
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--purple-main);
+}
+
+.summary-value {
+  font-weight: 600;
+  color: var(--purple-main);
+}
+
+.total-row .summary-value {
+  font-weight: 700;
+}
+
+.complete-booking-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--purple-main),
+    var(--purple-light)
+  );
+  color: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(107, 70, 193, 0.3);
+  cursor: pointer;
+}
+
+.complete-booking-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 12px rgba(107, 70, 193, 0.4);
+}
+
+.terms-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.terms-link {
+  color: var(--purple-main);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.terms-link:hover {
+  color: var(--purple-light);
+}
+
+/* Mobile Responsiveness for Booking Page Layout */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .main-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .main-item-info {
+    width: 100%;
+  }
+
+  .quantity-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .rental-period-section,
+  .kra-pin-section,
+  .order-summary-sidebar {
+    padding: 1rem;
+  }
+
+  .date-pickers {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .date-input-group {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .kra-info-message {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .kra-info-message .info-icon {
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .summary-details p {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .summary-details p:last-of-type {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .complete-booking-button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .terms-text {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,190 @@
+/* src/pages/Home/Home.css - Home Page styling */
+
+.home-page-container {
+  background-color: var(--bg-primary); /* Uses primary background from theme */
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  padding: 0; /* No top/bottom padding here, layout handled by sections */
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap-reverse; /* Image on right for desktop, on top for mobile */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem; /* Ample padding for hero content */
+  gap: 4rem; /* Space between text and image */
+}
+
+@media (max-width: 991px) {
+  .hero-section {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    padding: 2.5rem 1.5rem;
+    gap: 2.5rem;
+  }
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px; /* Ensure content doesn't get too narrow */
+  text-align: left; /* Align text left */
+}
+
+@media (max-width: 991px) {
+  .hero-content {
+    text-align: center; /* Center text on mobile */
+  }
+}
+
+.hero-tagline {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--purple-main); /* Purple tagline */
+  background-color: var(--purple-bg-light); /* Light purple background */
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.5rem;
+  display: inline-block; /* Makes background only cover text */
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .hero-tagline {
+    margin: 0 auto 1.5rem auto; /* Center on mobile */
+  }
+}
+
+.hero-title {
+  font-size: 3.5rem; /* Large heading */
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title .purple-text {
+  color: var(--purple-main); /* Specific purple for "professional gear" */
+}
+
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .hero-buttons {
+    justify-content: center; /* Center buttons on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons vertically on very small screens */
+    gap: 1rem;
+  }
+}
+
+.primary-button,
+.secondary-button {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.primary-button {
+  background: linear-gradient(
+    to right,
+    var(--purple-main),
+    var(--purple-light)
+  );
+  color: white;
+  box-shadow: 0 4px 8px var(--glow-color); /* Subtle glow effect */
+}
+
+.primary-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 12px var(--glow-color);
+}
+
+.secondary-button {
+  background: none;
+  border: 2px solid var(--purple-main);
+  color: var(--purple-main);
+}
+
+.secondary-button:hover {
+  background-color: var(--purple-main);
+  color: white;
+}
+
+.hero-image-wrapper {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  padding: 1.5rem; /* Padding for the glow effect */
+  background-color: var(
+    --light-grey-bg
+  ); /* Use light grey for image background container */
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* General shadow for the image container */
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1rem; /* Rounded corners for the image itself */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Inner shadow for the image */
+}
+
+/* Lightbulb Icon on Image */
+.lightbulb-icon-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--lightbulb-bg);
+  border: 2px solid var(--lightbulb-border);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.lightbulb-icon {
+  color: var(--lightbulb-icon);
+  width: 32px;
+  height: 32px;
+}

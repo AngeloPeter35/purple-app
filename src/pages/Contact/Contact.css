@@ -1,0 +1,145 @@
+/* src/pages/Contact/Contact.css - Contact Page styling */
+
+.contact-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-primary); /* Use primary background from theme */
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .contact-page-container {
+    padding: 1.5rem 1rem;
+    min-height: calc(100vh - 60px);
+  }
+}
+
+.contact-page-heading {
+  font-size: 1.5rem; /* Smaller heading as in image */
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.contact-page-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+.contact-card {
+  background-color: var(--card-background);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.contact-icon {
+  color: var(--purple-main); /* Purple icon color */
+  background-color: var(
+    --purple-bg-light
+  ); /* Light purple background for icon circle */
+  border-radius: 50%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  width: 48px; /* Fixed icon size based on image */
+  height: 48px;
+  display: flex; /* For centering SVG */
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-icon svg {
+  /* Targeting lucide-react svg */
+  width: 24px; /* Adjust inner SVG size */
+  height: 24px;
+}
+
+.contact-card-title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.contact-card-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.contact-detail {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0.25rem 0;
+}
+
+.view-map-link {
+  color: var(--purple-main);
+  text-decoration: underline;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: color 0.2s ease;
+}
+
+.view-map-link:hover {
+  color: var(--purple-light);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .contact-page-heading {
+    font-size: 1.25rem;
+  }
+
+  .contact-page-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-info-grid {
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0.5rem;
+  }
+
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-card-title {
+    font-size: 1.125rem;
+  }
+
+  .contact-card-text,
+  .contact-detail {
+    font-size: 0.9rem;
+  }
+}

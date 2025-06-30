@@ -1,0 +1,311 @@
+/* src/pages/EquipmentDetail/EquipmentDetail.css - Styling for Individual Equipment Page */
+
+.equipment-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-primary); /* Uses primary background from theme */
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 767px) {
+  .equipment-detail-container {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.not-found-message {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  padding: 3rem;
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.back-button {
+  display: block;
+  width: fit-content;
+  margin-top: 1.5rem;
+  background-color: var(--purple-main);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.back-button:hover {
+  opacity: 0.9;
+}
+
+.equipment-detail-card {
+  background-color: var(--card-background);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row; /* Default desktop layout */
+  gap: 2.5rem;
+  padding: 2.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 850px) {
+  /* Adjust for smaller screens (e.g., tablets/larger phones) */
+  .equipment-detail-card {
+    flex-direction: column; /* Stack image and content vertically */
+    padding: 2rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Smaller phones */
+  .equipment-detail-card {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+.detail-image-section {
+  flex-shrink: 0; /* Prevents image section from shrinking */
+  width: 400px; /* Fixed width for the image section on desktop */
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: var(--light-grey-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 850px) {
+  .detail-image-section {
+    width: 100%; /* Full width on stacked layout */
+    height: 250px; /* Fixed height for image on smaller screens */
+  }
+}
+
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-category-tag,
+.detail-availability-tag {
+  position: absolute;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.detail-category-tag {
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background-color: var(--category-tag-bg);
+  color: var(--category-tag-text);
+  text-transform: capitalize;
+}
+
+.detail-availability-tag {
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+.detail-availability-tag.in-stock {
+  background-color: var(--availability-in-stock-bg);
+  color: var(--availability-in-stock-text);
+}
+
+.detail-availability-tag.out-of-stock {
+  background-color: var(--availability-out-of-stock-bg);
+  color: var(--availability-out-of-stock-text);
+}
+
+.detail-content-section {
+  flex-grow: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  min-width: 0;
+}
+
+.detail-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.detail-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--purple-main);
+  margin-bottom: 2rem;
+}
+
+.section-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color); /* Subtle separator */
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.detail-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.detail-features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2.5rem;
+}
+
+.detail-features-list li {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem; /* Space for custom bullet */
+}
+
+.detail-features-list li::before {
+  content: "•"; /* Simple dot bullet */
+  color: var(--purple-main);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  font-size: 1.2em; /* Make bullet slightly larger */
+  line-height: 1; /* Align bullet vertically */
+}
+
+.detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Pushes buttons to the bottom */
+  width: 100%;
+}
+
+.add-to-cart-button,
+.book-now-button {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.add-to-cart-button {
+  background: linear-gradient(
+    to right,
+    var(--purple-main),
+    var(--purple-light)
+  );
+  color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(107, 70, 193, 0.3);
+}
+
+.add-to-cart-button:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 6px 12px rgba(107, 70, 193, 0.4);
+}
+
+.add-to-cart-button.added,
+.add-to-cart-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.book-now-button {
+  background: none;
+  border: 2px solid var(--purple-main);
+  color: var(--purple-main);
+  box-shadow: none;
+  display: flex; /* Make it a flex container to center text */
+  align-items: center;
+  justify-content: center;
+}
+
+.book-now-button:hover {
+  background-color: var(--purple-main);
+  color: white;
+}
+
+.back-to-list-button {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0;
+  color: var(--purple-main);
+  text-decoration: none;
+  font-weight: 500;
+  transition: text-decoration 0.2s ease, color 0.2s ease;
+}
+
+.back-to-list-button:hover {
+  text-decoration: underline;
+  color: var(--purple-light);
+}
+
+/* Mobile Responsiveness for details page */
+@media (max-width: 600px) {
+  .detail-name {
+    font-size: 1.5rem;
+  }
+
+  .detail-price {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-heading {
+    font-size: 1.125rem;
+  }
+
+  .detail-description,
+  .detail-features-list li {
+    font-size: 0.9rem;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .add-to-cart-button,
+  .book-now-button {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+
+  .back-to-list-button {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+}

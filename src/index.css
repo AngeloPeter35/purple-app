@@ -1,13 +1,18 @@
-body {
+/* src/index.css - Minimal, for base HTML elements */
+/* This file should contain only very basic, global resets or HTML element styles */
+
+html,
+body,
+#root {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Removes extra space below image */
 }

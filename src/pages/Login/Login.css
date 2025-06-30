@@ -1,0 +1,136 @@
+/* src/pages/Login/Login.css - Login Page styling */
+
+.login-page-container {
+  background-color: var(--bg-primary); /* Use primary background from theme */
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.login-card {
+  background-color: var(--card-background); /* Card background from theme */
+  border-radius: 1.25rem; /* Consistent large radius */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px; /* Max width for the login card */
+  text-align: center;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--purple-main); /* Purple heading */
+  margin-bottom: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: var(
+    --bg-primary
+  ); /* Input background matching page background */
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-input:focus {
+  border-color: var(--purple-main);
+  box-shadow: 0 0 0 2px var(--input-focus-shadow);
+  outline: none;
+}
+
+.login-button {
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--purple-main),
+    var(--purple-light)
+  );
+  color: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(107, 70, 193, 0.3);
+}
+
+.login-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 12px rgba(107, 70, 193, 0.4);
+}
+
+.login-message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.login-message.success {
+  color: var(--availability-in-stock-text); /* Green for success */
+}
+
+.login-message.error {
+  color: var(--availability-out-of-stock-text); /* Red for error */
+}
+
+.signup-link-text {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.signup-link {
+  color: var(--purple-main);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.signup-link:hover {
+  color: var(--purple-light);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .login-button {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,65 @@
+booking page
+
+State Management:
+
+kraPin: A state variable (useState) to store the KRA PIN entered by the user. It's initialized as an empty string.
+
+Context Integration:
+
+useCart(): It uses a custom useCart hook (presumably from ../context/CartContext) to access global cart-related state and functions:
+
+cartItems: An array of items currently in the user's booking cart.
+
+updateCartItem: A function to modify properties of an item in the cart (e.g., update its start/end dates).
+
+removeFromCart: A function to remove an item from the cart.
+
+Calculations:
+
+subtotal: Calculates the total cost of all items in the cart. It iterates through cartItems, determines the number of rental days for each (minimum 1 day), and multiplies by the item's price.
+
+total: Currently, this is the same as subtotal, implying no additional taxes or fees are applied at this stage.
+
+isValidKRA: A regular expression (/^[A-Z]\d{9}[A-Z]$/.test(kraPin)) is used to validate the KRA PIN format. It checks if the PIN starts with an uppercase letter, followed by 9 digits, and ends with an uppercase letter.
+
+Event Handlers:
+
+handleDateChange(id, field, value): This function is called when a user changes either the "Start Date" or "End Date" for a specific cart item. It finds the item by its id and then updates the startDate or endDate property of that item in the cartItems array via updateCartItem.
+
+handleBooking(): This is the core logic for when the user attempts to "Complete Booking".
+
+It first checks if a valid kraPin has been entered. If not, it shows an alert (which you should replace with a custom modal in a production app as alert() is not recommended for production UI).
+
+It then verifies if all items in the cart have both a startDate and endDate selected. If not, it displays another alert.
+
+If both validations pass, it shows a "Booking submitted successfully!" alert.
+
+Rendering (JSX):
+
+Main Layout: Uses divs with class names like booking-page, booking-list, and order-summary to structure the content into two main sections (list of booked items/KRA PIN on the left, order summary on the right).
+
+Conditional Rendering:
+
+If cartItems is empty, it displays a message: "You have not booked any equipment yet."
+
+Otherwise, it maps through cartItems to render each booking-item.
+
+Booking Item Details: For each item:
+
+Displays an image (item.image), name (item.name), and price.
+
+Provides "Start Date" and "End Date" input fields of type="date", linked to the handleDateChange function.
+
+Shows the calculated Rental Days and Total for this item.
+
+Includes a "Remove" button linked to removeFromCart.
+
+KRA PIN Input: An input field for the KRA PIN. It updates the kraPin state on change and converts input to uppercase. It conditionally displays a "Invalid KRA PIN format" message if the format is incorrect.
+
+Order Summary:
+
+Displays Subtotal and Total.
+
+A "Complete Booking" button (complete-booking). This button is disabled if isValidKRA is false.
+
+A small disclaimer about Terms of Service and Privacy Policy.

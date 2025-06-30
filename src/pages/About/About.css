@@ -1,0 +1,124 @@
+/* src/pages/About/About.css - About Page styling */
+
+.about-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-primary); /* Use primary background from theme */
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .about-page-container {
+    padding: 1.5rem 1rem;
+    min-height: calc(100vh - 60px);
+  }
+}
+
+.about-page-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.about-page-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+.about-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem; /* Space between cards */
+  justify-content: center;
+}
+
+.feature-card {
+  background-color: var(--card-background);
+  border-radius: 1.25rem; /* Consistent large radius */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left; /* Text aligns left inside card */
+  gap: 1rem;
+}
+
+.feature-icon {
+  color: var(--purple-main); /* Purple icon color */
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  list-style: none; /* Remove default bullets */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.feature-list li {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem; /* Space for custom bullet */
+}
+
+.feature-list li::before {
+  content: "✓"; /* Checkmark bullet */
+  color: var(--purple-main);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+.feature-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .about-page-heading {
+    font-size: 2rem;
+  }
+
+  .about-page-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-features-grid {
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .feature-title {
+    font-size: 1.25rem;
+  }
+
+  .feature-list li {
+    font-size: 0.9rem;
+    padding-left: 1.2rem;
+  }
+}

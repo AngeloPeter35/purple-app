@@ -1,0 +1,212 @@
+/* src/components/EquipmentCard/EquipmentCard.css - Equipment Card styling */
+
+.equipment-card {
+  background-color: var(--card-background);
+  border-radius: 1.25rem; /* 20px */
+  padding: 1.25rem; /* 20px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.equipment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1), 0 15px 20px rgba(0, 0, 0, 0.08);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 11.25rem; /* 180px */
+  margin-bottom: 1rem;
+  border-radius: 0.875rem; /* 14px */
+  overflow: hidden;
+  background-color: var(--light-grey-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.875rem;
+  display: block;
+}
+
+.category-tag {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background-color: var(--category-tag-bg);
+  color: var(--category-tag-text);
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 10;
+  text-transform: capitalize;
+}
+
+.availability-tag {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.availability-tag.in-stock {
+  background-color: var(--availability-in-stock-bg);
+  color: var(--availability-in-stock-text);
+}
+
+.availability-tag.out-of-stock {
+  background-color: var(--availability-out-of-stock-bg);
+  color: var(--availability-out-of-stock-text);
+}
+
+.equipment-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.equipment-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--purple-main);
+  margin-bottom: 1.25rem;
+}
+
+.equipment-price span {
+  font-weight: 400;
+  color: var(--text-secondary); /* Adjusted for theme consistency */
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+.details-button {
+  flex: 1;
+  background: none;
+  border: 1px solid var(--purple-main);
+  color: var(--purple-main);
+  padding: 0.625rem 1rem;
+  font-size: 0.9375rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-button:hover {
+  background-color: var(--purple-main);
+  color: white;
+}
+
+.add-to-cart-button {
+  flex: 0 0 auto;
+  background: linear-gradient(
+    to right,
+    var(--purple-main),
+    var(--purple-light)
+  );
+  color: white;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.9375rem;
+  border-radius: 0.375rem;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.add-to-cart-button .cart-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+.add-to-cart-button:hover:not(.added):not(:disabled) {
+  opacity: 0.9;
+}
+
+.add-to-cart-button.added,
+.add-to-cart-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
+  .equipment-card {
+    padding: 1rem;
+  }
+
+  .image-wrapper {
+    height: 10rem;
+  }
+
+  .category-tag,
+  .availability-tag {
+    font-size: 0.6875rem;
+    padding: 0.2rem 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .equipment-name {
+    font-size: 1rem;
+  }
+
+  .equipment-price {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .details-button,
+  .add-to-cart-button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    height: auto;
+  }
+
+  .add-to-cart-button .cart-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
