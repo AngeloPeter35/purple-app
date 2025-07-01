@@ -1,7 +1,6 @@
-// src/components/Navbar/Navbar.jsx - Navbar component
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { ShoppingCart, Sun, Moon, User, Menu, X } from 'lucide-react'; // Using lucide-react as in your original Navbar
+import { ShoppingCart, Sun, Moon, User, Menu, X } from 'lucide-react';
 
 import { useTheme } from "../../context/ThemeContext";
 import { useCart } from "../../context/CartContext";
@@ -15,10 +14,9 @@ const Navbar = () => {
 
   const totalCartItems = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
 
-
   return (
     <nav className="navbar">
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay (unchanged) */}
       <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <button className="close-mobile-menu" onClick={() => setIsMobileMenuOpen(false)}>
@@ -36,20 +34,22 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar Content */}
-      <div className="navbar-left">
-        <Link to="/" className="navbar-logo">
-          <span className="logo-purple">purple</span>
-          <span className="logo-apple">apple</span>
-        </Link>
-        <div className="nav-links-main">
-          <NavLink to="/" className="nav-link">Home</NavLink>
-          <NavLink to="/equipment" className="nav-link">Equipment</NavLink>
-          <NavLink to="/booking" className="nav-link">Booking</NavLink>
-          <NavLink to="/about" className="nav-link">About</NavLink>
-          <NavLink to="/contact" className="nav-link">Contact</NavLink>
-        </div>
+      {/* Logo - now a direct child of navbar */}
+      <Link to="/" className="navbar-logo">
+        <span className="logo-purple">purple</span>
+        <span className="logo-apple">apple</span>
+      </Link>
+
+      {/* Navigation Links - now a direct child of navbar */}
+      <div className="nav-links-main">
+        <NavLink to="/" className="nav-link">Home</NavLink>
+        <NavLink to="/equipment" className="nav-link">Equipment</NavLink>
+        <NavLink to="/booking" className="nav-link">Booking</NavLink>
+        <NavLink to="/about" className="nav-link">About</NavLink>
+        <NavLink to="/contact" className="nav-link">Contact</NavLink>
       </div>
 
+      {/* Right side icons - remains a direct child of navbar */}
       <div className="navbar-right">
         <button className="icon-button theme-toggle" onClick={toggleTheme}>
           {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}

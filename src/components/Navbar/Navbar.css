@@ -1,26 +1,38 @@
-/* src/components/Navbar/Navbar.css - Navbar styling */
-
 .navbar {
-  width: 100%;
+  width: 100%; /* Full width background */
   background-color: var(--navbar-bg);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 1rem 0; /* Vertical padding only; horizontal padding will be on inner container */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
-  left: 0;
+  left: 0; /* Stays at the very top left of the viewport */
   z-index: 1000;
   box-sizing: border-box;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  display: flex; /* Make navbar a flex container */
+  justify-content: center; /* Center its immediate child (the inner container) */
 }
 
-.navbar-left {
+.navbar-inner-container {
+  /* NEW CLASS for centering content */
+  width: 100%;
+  max-width: 1200px; /* Limit content width to match other page content */
+  padding: 0 2rem; /* Horizontal padding for content inside the centered area */
   display: flex;
+  justify-content: space-between; /* Distribute logo, links, and icons */
   align-items: center;
-  gap: 2.5rem; /* Space between logo and main links */
+  box-sizing: border-box;
 }
+
+/* The 'navbar-left' class is no longer used in Navbar.jsx v5. You can remove it
+   from your CSS if it's not used elsewhere, or keep it if you plan to re-introduce it. */
+/* .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+} */
 
 .navbar-logo {
   display: flex;
@@ -29,6 +41,7 @@
   font-size: 1.5rem;
   text-decoration: none;
   white-space: nowrap;
+  flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .navbar-logo .logo-purple {
@@ -43,6 +56,9 @@
 .nav-links-main {
   display: flex;
   gap: 2.5rem;
+  flex-grow: 1; /* Allow it to grow and push other elements */
+  justify-content: center; /* Center the links within this growing div */
+  /* On mobile, this will be hidden and the mobile menu used */
 }
 
 .nav-link {
@@ -79,6 +95,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  flex-shrink: 0; /* Prevent right icons from shrinking */
 }
 
 .icon-button {
@@ -104,7 +121,7 @@
   /* Targeting lucide-react icons */
   width: 20px;
   height: 20px;
-  stroke: currentColor; /* Ensure icon color matches text color */
+  stroke: currentColor;
 }
 
 .nav-link-icon {
@@ -143,7 +160,7 @@
 
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
-  display: none; /* Hidden on desktop */
+  display: none;
   background: none;
   border: none;
   cursor: pointer;
@@ -227,11 +244,13 @@
 /* Mobile Responsiveness */
 @media (max-width: 767px) {
   .navbar {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0; /* Only vertical padding, horizontal handled by inner container */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
-  .navbar-left {
-    gap: 1rem;
+  .navbar-inner-container {
+    padding: 0 1rem; /* Smaller horizontal padding on mobile */
   }
 
   .navbar-logo {
@@ -247,10 +266,10 @@
   }
 
   .nav-link-icon.login-link {
-    display: none; /* Hide login text link on small mobile */
+    display: none;
   }
 
   .mobile-menu-toggle {
-    display: block; /* Show hamburger icon on mobile */
+    display: block;
   }
 }
