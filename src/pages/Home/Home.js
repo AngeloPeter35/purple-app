@@ -30,11 +30,7 @@ const Home = () => {
             <div className="lightbulb-icon-container">
                 <Lightbulb size={64} className="lightbulb-icon" />
             </div>
-          <img
-            src="" 
-            alt=""
-            className="hero-image"
-          />
+          <img src="/Images/home-image.jpg" alt="man with a camera" />
         </div>
       </div>
 
