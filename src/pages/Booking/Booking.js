@@ -1,80 +1,86 @@
-// src/pages/Booking/Booking.jsx - Booking Page component
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { differenceInCalendarDays, parseISO } from "date-fns";
-import { CalendarToday, AddCircleOutline, RemoveCircleOutline, DeleteOutline, InfoOutlined } from "@mui/icons-material";
+import { differenceInCalendarDays, parseISO, isValid } from "date-fns";
+import { AddCircleOutline, RemoveCircleOutline, DeleteOutline, InfoOutlined } from "@mui/icons-material"; // Removed CalendarToday
 
 import './Booking.css';
 
 const Booking = () => {
   const { cartItems, updateCartItem, removeFromCart } = useCart();
   const [kraPin, setKraPin] = useState("");
+  const [bookingStartDate, setBookingStartDate] = useState(cartItems[0]?.startDate || "");
+  const [bookingEndDate, setBookingEndDate] = useState(cartItems[0]?.endDate || "");
 
-  const mainBookingItem = cartItems[0]; // For this detailed view, we display the first item
+  const rentalDays = (() => {
+    if (bookingStartDate && bookingEndDate) {
+      const start = parseISO(bookingStartDate);
+      const end = parseISO(bookingEndDate);
+      if (isValid(start) && isValid(end) && end >= start) {
+        return Math.max(1, differenceInCalendarDays(end, start));
+      }
+    }
+    return 1;
+  })();
 
-  const rentalDays = mainBookingItem && mainBookingItem.startDate && mainBookingItem.endDate
-    ? Math.max(
-        1,
-        differenceInCalendarDays(
-          parseISO(mainBookingItem.endDate),
-          parseISO(mainBookingItem.startDate)
-        )
-      )
-    : 1;
+  const calculateTotals = () => {
+    let currentSubtotal = 0;
+    cartItems.forEach(item => {
+      currentSubtotal += item.price * (item.quantity || 1) * rentalDays;
+    });
+    const currentTotal = currentSubtotal;
 
-  const subtotal = mainBookingItem ? mainBookingItem.price * rentalDays * (mainBookingItem.quantity || 1) : 0;
-  const deposit = subtotal * 0.3;
-  const total = subtotal;
+    return { subtotal: currentSubtotal, total: currentTotal };
+  };
+
+  const { subtotal, total } = calculateTotals();
 
   const isValidKRA = /^[A-Z]\d{9}[A-Z]$/.test(kraPin);
 
   const handleDateChange = (field, value) => {
-    if (mainBookingItem) {
-      updateCartItem(mainBookingItem.id, {
-        ...mainBookingItem,
-        [field]: value,
-      });
+    if (field === "startDate") {
+      setBookingStartDate(value);
+    } else {
+      setBookingEndDate(value);
     }
   };
 
-  const handleQuantityChange = (type) => {
-    if (!mainBookingItem) return;
+  const handleQuantityChange = (itemId, type) => {
+    const itemToUpdate = cartItems.find(item => String(item.id) === String(itemId));
+    if (!itemToUpdate) return;
 
-    let newQuantity = mainBookingItem.quantity || 1;
+    let newQuantity = itemToUpdate.quantity || 1;
     if (type === 'increase') {
-        newQuantity += 1;
+      newQuantity += 1;
     } else if (type === 'decrease' && newQuantity > 1) {
-        newQuantity -= 1;
+      newQuantity -= 1;
     }
 
-    updateCartItem(mainBookingItem.id, {
-        ...mainBookingItem,
-        quantity: newQuantity,
-    });
+    updateCartItem(itemId, { quantity: newQuantity });
   };
 
-  const handleDeleteItem = () => {
-    if (mainBookingItem) {
-        removeFromCart(mainBookingItem.id);
-        // In a real app, use a custom modal for user feedback, not alert()
-        alert("Item removed from booking.");
-    }
+  const handleDeleteItem = (itemId) => {
+    removeFromCart(itemId);
+    console.log(`Item with ID ${itemId} removed from booking.`);
   };
 
   const handleCompleteBooking = () => {
     if (!isValidKRA) {
-      alert("Invalid KRA PIN. Please enter a valid one (e.g., A123456789B).");
+      console.error("Invalid KRA PIN. Please enter a valid one (e.g., A123456789B).");
       return;
     }
 
-    if (!mainBookingItem || !mainBookingItem.startDate || !mainBookingItem.endDate) {
-      alert("Please select both start and end dates for your booking.");
+    if (cartItems.length === 0) {
+      console.error("Your cart is empty. Please add items to book.");
       return;
     }
 
-    // In a real app, send data to your backend here
-    alert(`Booking for ${mainBookingItem.name} completed successfully! Total: KES ${total.toLocaleString()}`);
+    if (!bookingStartDate || !bookingEndDate) {
+      console.error("Please select both start and end dates for your booking.");
+      return;
+    }
+
+    console.log(`Booking completed successfully! Total: KES ${total.toLocaleString()}`);
   };
 
   if (cartItems.length === 0) {
@@ -89,28 +95,28 @@ const Booking = () => {
   return (
     <div className="booking-page-container">
       <div className="booking-content">
-        {/* Left Section: Main Item Details & Rental Period & KRA PIN */}
         <div className="booking-details-section">
-          <div className="main-item-header">
-            <img src={mainBookingItem.image} alt={mainBookingItem.name} className="main-item-image" />
-            <div className="main-item-info">
-              <h1 className="main-item-name">{mainBookingItem.name}</h1>
-              <p className="main-item-price">KES {mainBookingItem.price.toLocaleString()}/day</p>
+          {cartItems.map((item) => (
+            <div key={item.id} className="main-item-header">
+              <img src={item.image} alt={item.name} className="main-item-image" />
+              <div className="main-item-info">
+                <h1 className="main-item-name">{item.name}</h1>
+                <p className="main-item-price">KES {item.price.toLocaleString()}/day</p>
+              </div>
+              <div className="quantity-controls">
+                <button onClick={() => handleQuantityChange(item.id, 'decrease')} className="quantity-button">
+                  <RemoveCircleOutline />
+                </button>
+                <span className="quantity-display">{item.quantity || 1}</span>
+                <button onClick={() => handleQuantityChange(item.id, 'increase')} className="quantity-button">
+                  <AddCircleOutline />
+                </button>
+                <button onClick={() => handleDeleteItem(item.id)} className="delete-button">
+                  <DeleteOutline />
+                </button>
+              </div>
             </div>
-            {/* Quantity controls as seen in the image */}
-            <div className="quantity-controls">
-                <button onClick={() => handleQuantityChange('decrease')} className="quantity-button">
-                    <RemoveCircleOutline />
-                </button>
-                <span className="quantity-display">{mainBookingItem.quantity || 1}</span>
-                <button onClick={() => handleQuantityChange('increase')} className="quantity-button">
-                    <AddCircleOutline />
-                </button>
-                <button onClick={handleDeleteItem} className="delete-button">
-                    <DeleteOutline />
-                </button>
-            </div>
-          </div>
+          ))}
 
           <div className="rental-period-section">
             <h2 className="section-title">Rental Period</h2>
@@ -121,11 +127,10 @@ const Booking = () => {
                   <input
                     type="date"
                     id="startDate"
-                    value={mainBookingItem.startDate || ""}
+                    value={bookingStartDate}
                     onChange={(e) => handleDateChange("startDate", e.target.value)}
                     className="date-input"
                   />
-                  <CalendarToday className="input-icon" />
                 </div>
               </div>
               <div className="date-input-group">
@@ -134,11 +139,10 @@ const Booking = () => {
                   <input
                     type="date"
                     id="endDate"
-                    value={mainBookingItem.endDate || ""}
+                    value={bookingEndDate}
                     onChange={(e) => handleDateChange("endDate", e.target.value)}
                     className="date-input"
                   />
-                  <CalendarToday className="input-icon" />
                 </div>
               </div>
             </div>
@@ -165,12 +169,16 @@ const Booking = () => {
           </div>
         </div>
 
-        {/* Right Section: Order Summary Sidebar */}
         <div className="order-summary-sidebar">
           <h2 className="summary-title">Order Summary</h2>
           <div className="summary-details">
+            {cartItems.map(item => (
+              <p key={item.id} className="summary-item-row">
+                {item.name} (x{item.quantity || 1}): <span className="summary-value">KES {(item.price * (item.quantity || 1) * rentalDays).toLocaleString()}</span>
+              </p>
+            ))}
+            <hr className="summary-divider" />
             <p>Subtotal: <span className="summary-value">KES {subtotal.toLocaleString()}</span></p>
-            <p>Deposit (30%): <span className="summary-value">KES {deposit.toLocaleString()}</span></p>
             <p className="total-row">Total: <span className="summary-value">KES {total.toLocaleString()}</span></p>
           </div>
           <button onClick={handleCompleteBooking} className="complete-booking-button">

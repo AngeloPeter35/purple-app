@@ -23,11 +23,22 @@ export default function EquipmentCard({ equipment }) {
 
   const availableStock = parseAvailability(equipment.availability);
 
+  // Calculate remaining stock
+  const remainingStock = Math.max(0, availableStock - currentQuantityInCart);
+
   // Determine if the add to cart button should be disabled
   // It's disabled if:
   // 1. The item is explicitly "Out of Stock"
   // 2. The quantity in the cart is equal to or exceeds the available stock
   const isAddToCartDisabled = equipment.availability === "Out of Stock" || currentQuantityInCart >= availableStock;
+
+  // Determine the text to display in the availability tag
+  const availabilityTagText = remainingStock > 0
+    ? `${remainingStock} available`
+    : "Out of Stock";
+
+  const availabilityTagClass = remainingStock > 0 ? 'in-stock' : 'out-of-stock';
+
 
   return (
     <div className="equipment-card">
@@ -36,11 +47,12 @@ export default function EquipmentCard({ equipment }) {
         {equipment.category && (
           <span className="category-tag">{equipment.category}</span>
         )}
-        {equipment.availability && (
-          <span className={`availability-tag ${equipment.availability === "Out of Stock" ? 'out-of-stock' : 'in-stock'}`}>
-            {equipment.availability}
-          </span>
-        )}
+      {/* Updated availability tag to show remaining stock */}
+      {equipment.availability && (
+        <span className={`availability-tag ${availabilityTagClass}`}>
+          {availabilityTagText}
+        </span>
+      )}
       </div>
 
       <h3 className="equipment-name">{equipment.name}</h3>

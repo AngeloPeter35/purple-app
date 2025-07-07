@@ -1,6 +1,6 @@
 // src/pages/EquipmentDetail/EquipmentDetail.jsx - Individual Equipment Detail Page
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useCart } from '../../context/CartContext'; // Import useCart for adding to cart
 import './EquipmentDetail.css';
 
@@ -9,8 +9,8 @@ const equipmentList = [
   {
     id: 1,
     name: "Amaran P60C RGBWW LED Panel",
-    price: 45000,
-    image: "",
+    price: 1000,
+    image: "/Images/Amaran P60C.jpeg", 
     category: "lights",
     availability: "1 available",
     description: "A professional RGBWW LED panel light offering full color control, high CRI, and a wide CCT range for superior lighting effects. Perfect for studio and on-location shoots.",
@@ -25,9 +25,8 @@ const equipmentList = [
   {
     id: 2,
     name: "Ulanzi VL49 RGB LED Light",
-    price: 28000,
-    image: "",
-    category: "lights",
+    price: 1500,
+    image: "/Images/ULANZI.jpeg", 
     availability: "1 available",
     description: "Compact and portable RGB LED light with adjustable color temperature and brightness. Ideal for vlogging, product photography, and creative lighting.",
     features: [
@@ -41,8 +40,8 @@ const equipmentList = [
   {
     id: 3,
     name: "Canon EOS R5 Mirrorless Camera",
-    price: 85000,
-    image: "",
+    price: 2000,
+    image: "/Images/Canon-EOS-R5.jpeg",
     category: "cameras",
     availability: "1 available",
     description: "A high-performance full-frame mirrorless camera offering stunning 8K video recording and high-resolution stills. A versatile tool for demanding professionals.",
@@ -57,8 +56,8 @@ const equipmentList = [
   {
     id: 4,
     name: "Sennheiser MKH 416 Shotgun Mic",
-    price: 15000,
-    image: "",
+    price: 1200,
+    image: "/Images/Sennheiser-MKH-416 Shotgun Mic.jpeg", 
     category: "audio",
     availability: "3 available",
     description: "A compact pressure-gradient microphone with a short interference tube, highly immune to humidity and perfect for film, radio, and television, especially for outdoor broadcasting applications.",
@@ -73,8 +72,8 @@ const equipmentList = [
   {
     id: 5,
     name: "Godox V860III Speedlight",
-    price: 10000,
-    image: "",
+    price: 3000,
+    image: "/Images/Godox speed light.jpeg", 
     category: "lights",
     availability: "Out of Stock",
     description: "A versatile TTL Li-ion round head camera flash with a powerful battery and fast recycling. Ideal for events and portrait photography.",
@@ -89,15 +88,15 @@ const equipmentList = [
   {
     id: 6,
     name: "DJI Mavic 3 Drone",
-    price: 30000,
-    image: "",
+    price: 2500,
+    image: "/Images/DJI Mavic 3.jpeg", 
     category: "drones",
     availability: "1 available",
     description: "A professional-grade camera drone with a Hasselblad camera, 4/3 CMOS sensor, and omnidirectional obstacle sensing. Perfect for cinematic aerial footage.",
     features: [
       "4/3 CMOS Hasselblad Camera",
       "5.1K Video Recording",
-      "46-Minute Max Flight Time",
+      "46-Minute Max Flight Flight Time",
       "Omnidirectional Obstacle Sensing",
       "Advanced RTH"
     ]
@@ -105,13 +104,32 @@ const equipmentList = [
 ];
 
 const EquipmentDetail = () => {
-  const { id } = useParams(); // Get the ID from the URL parameters
+  const { id } = useParams();
   const equipment = equipmentList.find(item => item.id === parseInt(id));
   const { addToCart, cartItems } = useCart();
+  const navigate = useNavigate();
 
-  const itemIsInCart = cartItems.some((cartItem) => cartItem.id === equipment?.id);
-  const isAddToCartDisabled = itemIsInCart || equipment?.availability === "Out of Stock";
+  const currentItemInCart = cartItems.find((cartItem) => String(cartItem.id) === String(equipment?.id));
+  const currentQuantityInCart = currentItemInCart ? currentItemInCart.quantity : 0;
 
+  const parseAvailability = (availabilityString) => {
+    if (availabilityString === "Out of Stock") {
+      return 0;
+    }
+    const match = availabilityString.match(/(\d+)\s+available/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  const availableStock = parseAvailability(equipment?.availability);
+
+  const isAddToCartDisabled = equipment?.availability === "Out of Stock" || currentQuantityInCart >= availableStock;
+
+  const handleBookNow = () => {
+    if (equipment) {
+      addToCart({ ...equipment, startDate: "", endDate: "" });
+      navigate('/booking');
+    }
+  };
 
   if (!equipment) {
     return (
@@ -162,9 +180,12 @@ const EquipmentDetail = () => {
             >
               {isAddToCartDisabled ? 'Added to Cart' : 'Add to Cart'}
             </button>
-            <Link to="/booking" className="book-now-button">
+            <button
+              onClick={handleBookNow}
+              className="book-now-button"
+            >
               Book Now
-            </Link>
+            </button>
           </div>
         </div>
       </div>

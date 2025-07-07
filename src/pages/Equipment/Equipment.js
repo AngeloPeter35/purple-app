@@ -7,48 +7,48 @@ const equipmentList = [
   {
     id: 1,
     name: "Amaran P60C RGBWW LED Panel",
-    price: 1000,
-    image: "/Images/Amaran P60C.jpeg",
+    price: 1000, 
+    image: "/Images/Amaran P60C.jpeg", 
     category: "lights",
     availability: "1 available",
   },
   {
     id: 2,
     name: "Ulanzi VL49 RGB LED Light",
-    price: 1500,
-    image: "/Images/ULANZI.jpeg",
+    price: 1500, 
+    image: "/Images/ULANZI.jpeg", 
     category: "lights",
     availability: "1 available",
   },
   {
     id: 3,
     name: "Canon EOS R5 Mirrorless Camera",
-    price: 2000,
-    image: "/Images/Canon-EOS-R5.jpeg",
+    price: 2000, 
+    image: "/Images/Canon-EOS-R5.jpeg", 
     category: "cameras",
     availability: "1 available",
   },
   {
     id: 4,
     name: "Sennheiser MKH 416 Shotgun Mic",
-    price: 1200,
-    image: "/Images/Sennheiser-MKH-416 Shotgun Mic.jpeg",
+    price: 1200, 
+    image: "/Images/Sennheiser-MKH-416 Shotgun Mic.jpeg", 
     category: "audio",
     availability: "3 available",
   },
   {
     id: 5,
     name: "Godox V860III Speedlight",
-    price: 3000,
-    image: "/Images/Godox speed light.jpeg",
+    price: 3000, 
+    image: "/Images/Godox speed light.jpeg", 
     category: "lights",
     availability: "Out of Stock",
   },
   {
     id: 6,
     name: "DJI Mavic 3 Drone",
-    price: 2500,
-    image: "/Images/DJI Mavic 3.jpeg",
+    price: 2500, 
+    image: "/Images/DJI Mavic 3.jpeg", 
     category: "drones",
     availability: "1 available",
   },
@@ -72,7 +72,6 @@ const Equipment = () => {
 
   return (
     <div className="equipment-page-wrapper">
-      {/* Filters Section */}
       <div className="filters-container">
         <h2 className="filters-title">Filters</h2>
         <div className="filter-controls">
@@ -136,7 +135,6 @@ const Equipment = () => {
         </div>
       </div>
 
-      {/* Equipment Grid Section */}
       <div className="equipment-grid-section">
         <div className="equipment-grid">
           {filteredEquipment.length === 0 ? (

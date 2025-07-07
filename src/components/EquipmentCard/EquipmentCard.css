@@ -158,7 +158,6 @@
 
 .radio-label-option input[type="radio"] {
   -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   width: 1.125rem;
   height: 1.125rem;
@@ -364,6 +363,8 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
+  background-color: var(--availability-in-stock-bg); /* Default for in-stock */
+  color: var(--availability-in-stock-text); /* Default for in-stock */
   padding: 0.25rem 0.625rem;
   border-radius: 0.375rem;
   font-size: 0.75rem;
@@ -413,25 +414,24 @@
 }
 
 .details-button {
-  /* Removed fixed width */
-  height: 2.8rem; /* Keep height consistent */
+  height: 2.8rem;
   background: none;
   border: 1px solid var(--purple-main);
   color: var(--purple-main);
-  padding: 0.625rem 0.75rem; /* Added padding to make it rectangular */
-  font-size: 0.9375rem; /* Matched font size with add-to-cart-button */
+  padding: 0.625rem 0.75rem;
+  font-size: 0.9375rem;
   border-radius: 0.375rem;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease;
-  white-space: nowrap; /* Prevent text wrapping for "View details" */
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
   box-sizing: border-box;
   flex-shrink: 0;
-  flex-grow: 1; /* Allow it to grow */
+  flex-grow: 1;
 }
 
 .details-button:hover {
@@ -453,12 +453,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Removed fixed width */
   height: 2.8rem;
   cursor: pointer;
   transition: opacity 0.2s ease;
   box-sizing: border-box;
-  flex-grow: 2; /* Make it proportionally wider than details-button */
+  flex-grow: 2;
 }
 
 .add-to-cart-button .cart-icon {
@@ -488,14 +487,21 @@
     height: 10rem;
   }
 
-  .category-tag,
+  /* Adjustments for smaller screens to make tags less intrusive */
+  .category-tag {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    border-radius: 0.25rem;
+  }
+
   .availability-tag {
-    font-size: 0.6875rem;
-    padding: 0.2rem 0.5rem;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    top: 0.5rem;
-    right: 0.5rem;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+    top: 0.4rem; /* Changed from bottom */
+    right: 0.4rem; /* Changed from left */
+    border-radius: 0.25rem;
   }
 
   .equipment-name {
