@@ -1,7 +1,6 @@
-// src/components/EquipmentCard/EquipmentCard.jsx - Equipment Card component
 import React from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart } from "@mui/icons-material"; // Keep using MUI icons for this specific button
+import { ShoppingCart } from "@mui/icons-material"; 
 import { useCart } from "../../context/CartContext";
 
 import './EquipmentCard.css';

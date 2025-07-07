@@ -1,11 +1,9 @@
-/* src/pages/Contact/Contact.css - Contact Page styling */
-
 .contact-page-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2.5rem 1.5rem;
-  background-color: var(--bg-primary); /* Use primary background from theme */
-  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  background-color: var(--bg-primary);
+  min-height: calc(100vh - 80px);
   text-align: center;
 }
 
@@ -17,7 +15,7 @@
 }
 
 .contact-page-heading {
-  font-size: 1.5rem; /* Smaller heading as in image */
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 1rem;
@@ -51,23 +49,20 @@
 }
 
 .contact-icon {
-  color: var(--purple-main); /* Purple icon color */
-  background-color: var(
-    --purple-bg-light
-  ); /* Light purple background for icon circle */
+  color: var(--purple-main);
+  background-color: var(--purple-bg-light);
   border-radius: 50%;
   padding: 0.75rem;
   margin-bottom: 1rem;
-  width: 48px; /* Fixed icon size based on image */
+  width: 48px;
   height: 48px;
-  display: flex; /* For centering SVG */
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .contact-icon svg {
-  /* Targeting lucide-react svg */
-  width: 24px; /* Adjust inner SVG size */
+  width: 24px;
   height: 24px;
 }
 

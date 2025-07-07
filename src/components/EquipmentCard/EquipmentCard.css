@@ -91,7 +91,7 @@
 
 .equipment-price span {
   font-weight: 400;
-  color: var(--text-secondary); /* Adjusted for theme consistency */
+  color: var(--text-secondary);
 }
 
 .card-actions {
@@ -116,8 +116,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem; /* Explicitly set height to match add-to-cart-button */
-  box-sizing: border-box; /* Ensure padding and border are included in the height */
+  height: 2.5rem;
+  box-sizing: border-box;
 }
 
 .details-button:hover {
@@ -141,10 +141,10 @@
   align-items: center;
   justify-content: center;
   width: 2.5rem;
-  height: 2.5rem; /* Fixed height */
+  height: 2.5rem;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  box-sizing: border-box; /* Ensure padding and border are included in the dimensions */
+  box-sizing: border-box;
 }
 
 .add-to-cart-button .cart-icon {
@@ -203,7 +203,7 @@
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
-    height: auto; /* Allow height to be auto when stacked vertically */
+    height: auto;
   }
 
   .add-to-cart-button .cart-icon {
