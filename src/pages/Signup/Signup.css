@@ -1,0 +1,175 @@
+.signup-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  background: linear-gradient(
+    135deg,
+    #f0f2f5 0%,
+    #e0e4e8 100%
+  ); /* Light gradient background */
+  font-family: "Inter", sans-serif; /* Modern font */
+  padding: 20px; /* Add some padding for smaller screens */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* Signup card styling */
+.signup-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  text-align: center;
+  width: 100%;
+  max-width: 450px; /* Max width for the card */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Signup icon */
+.signup-icon {
+  color: #8a2be2; /* Purple color for the icon */
+  margin-bottom: 20px;
+}
+
+/* Title styling */
+.signup-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* Form styling */
+.signup-form {
+  width: 100%;
+}
+
+/* Form group for labels and inputs */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Input field styling */
+.signup-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded input fields */
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Ensure padding doesn't add to width */
+}
+
+.signup-input:focus {
+  border-color: #8a2be2; /* Purple border on focus */
+  box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2); /* Soft purple glow on focus */
+  outline: none;
+}
+
+/* Button styling */
+.signup-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #8a2be2; /* Purple button */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Rounded button */
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3); /* Soft shadow for button */
+}
+
+.signup-button:hover {
+  background-color: #6a1aab; /* Darker purple on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.signup-button:active {
+  transform: translateY(0); /* Press effect */
+}
+
+/* Message styling */
+.signup-message {
+  margin-top: 25px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.signup-message.success {
+  background-color: #e6ffe6; /* Light green for success */
+  color: #28a745; /* Dark green text */
+  border: 1px solid #28a745;
+}
+
+.signup-message.error {
+  background-color: #ffe6e6; /* Light red for error */
+  color: #dc3545; /* Dark red text */
+  border: 1px solid #dc3545;
+}
+
+/* Login link text */
+.login-link-text {
+  margin-top: 25px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.login-link {
+  color: #8a2be2; /* Purple link */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-link:hover {
+  color: #6a1aab; /* Darker purple on hover */
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .signup-card {
+    padding: 30px 20px;
+    margin: 15px; /* Add margin to prevent sticking to edges */
+  }
+
+  .signup-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .signup-input,
+  .signup-button {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .signup-message,
+  .login-link-text {
+    font-size: 0.85rem;
+  }
+}

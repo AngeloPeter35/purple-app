@@ -7,12 +7,14 @@ import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Equipment from './pages/Equipment/Equipment';
-import EquipmentDetail from './pages/EquipmentDetail/EquipmentDetail'; // New import
+import EquipmentDetail from './pages/EquipmentDetail/EquipmentDetail'; 
 import Booking from './pages/Booking/Booking';
 import CartPage from './pages/CartPage/CartPage';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
+
 
 import './App.css'; // Global application styles
 import './index.css'; // Minimal index styles
@@ -27,12 +29,13 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/equipment" element={<Equipment />} />
-              <Route path="/equipment/:id" element={<EquipmentDetail />} /> {/* New Route */}
+              <Route path="/equipment/:id" element={<EquipmentDetail />} />
               <Route path="/booking" element={<Booking />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               {/* Placeholder routes for Terms and Privacy */}
               <Route path="/terms" element={
                 <div className="info-page-container">
