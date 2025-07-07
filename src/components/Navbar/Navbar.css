@@ -1,11 +1,11 @@
 .navbar {
-  width: 100%; /* Full width background */
+  width: 100%; /* Full width for the background */
   background-color: var(--navbar-bg);
-  padding: 1rem 0; /* Vertical padding only; horizontal padding will be on inner container */
+  padding: 1rem 0; /* Vertical padding only; horizontal padding handled by inner container */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
-  left: 0; /* Stays at the very top left of the viewport */
+  left: 0;
   z-index: 1000;
   box-sizing: border-box;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -16,23 +16,14 @@
 }
 
 .navbar-inner-container {
-  /* NEW CLASS for centering content */
   width: 100%;
-  max-width: 1200px; /* Limit content width to match other page content */
-  padding: 0 2rem; /* Horizontal padding for content inside the centered area */
+  max-width: 1200px; /* Standard content width for your site */
+  padding: 0 2.5rem; /* Increased horizontal padding for content inside the centered area */
   display: flex;
   justify-content: space-between; /* Distribute logo, links, and icons */
   align-items: center;
   box-sizing: border-box;
 }
-
-/* The 'navbar-left' class is no longer used in Navbar.jsx v5. You can remove it
-   from your CSS if it's not used elsewhere, or keep it if you plan to re-introduce it. */
-/* .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-} */
 
 .navbar-logo {
   display: flex;
@@ -41,7 +32,7 @@
   font-size: 1.5rem;
   text-decoration: none;
   white-space: nowrap;
-  flex-shrink: 0; /* Prevent logo from shrinking */
+  flex-shrink: 0;
 }
 
 .navbar-logo .logo-purple {
@@ -56,9 +47,8 @@
 .nav-links-main {
   display: flex;
   gap: 2.5rem;
-  flex-grow: 1; /* Allow it to grow and push other elements */
-  justify-content: center; /* Center the links within this growing div */
-  /* On mobile, this will be hidden and the mobile menu used */
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .nav-link {
@@ -95,7 +85,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  flex-shrink: 0; /* Prevent right icons from shrinking */
+  flex-shrink: 0;
 }
 
 .icon-button {
@@ -118,7 +108,6 @@
 }
 
 .icon-button svg {
-  /* Targeting lucide-react icons */
   width: 20px;
   height: 20px;
   stroke: currentColor;
@@ -158,7 +147,6 @@
   line-height: 1;
 }
 
-/* Mobile Menu Toggle */
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -167,7 +155,6 @@
   color: var(--navbar-icon-color);
 }
 
-/* Mobile Menu Overlay */
 .mobile-menu-overlay {
   position: fixed;
   top: 0;
@@ -241,16 +228,15 @@
   font-weight: 600 !important;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 767px) {
   .navbar {
-    padding: 0.75rem 0; /* Only vertical padding, horizontal handled by inner container */
+    padding: 0.75rem 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
 
   .navbar-inner-container {
-    padding: 0 1rem; /* Smaller horizontal padding on mobile */
+    padding: 0 1rem;
   }
 
   .navbar-logo {
@@ -258,7 +244,7 @@
   }
 
   .nav-links-main {
-    display: none; /* Hide main links on mobile */
+    display: none;
   }
 
   .navbar-right {

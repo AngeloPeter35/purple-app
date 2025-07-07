@@ -1,26 +1,23 @@
-/* src/pages/Home/Home.css - Home Page styling */
-
 .home-page-container {
-  background-color: var(--bg-primary); /* Uses primary background from theme */
-  min-height: calc(100vh - 80px); /* Adjust for navbar height */
-  padding: 0; /* No top/bottom padding here, layout handled by sections */
+  background-color: var(--bg-primary);
+  min-height: calc(100vh - 80px);
+  padding: 0;
 }
 
-/* Hero Section */
 .hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap-reverse; /* Image on right for desktop, on top for mobile */
+  flex-wrap: wrap-reverse;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 1.5rem; /* Ample padding for hero content */
-  gap: 4rem; /* Space between text and image */
+  padding: 4rem 1.5rem;
+  gap: 4rem;
 }
 
 @media (max-width: 991px) {
   .hero-section {
-    flex-direction: column; /* Stack vertically on smaller screens */
+    flex-direction: column;
     padding: 2.5rem 1.5rem;
     gap: 2.5rem;
   }
@@ -28,35 +25,35 @@
 
 .hero-content {
   flex: 1;
-  min-width: 300px; /* Ensure content doesn't get too narrow */
-  text-align: left; /* Align text left */
+  min-width: 300px;
+  text-align: left;
 }
 
 @media (max-width: 991px) {
   .hero-content {
-    text-align: center; /* Center text on mobile */
+    text-align: center;
   }
 }
 
 .hero-tagline {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--purple-main); /* Purple tagline */
-  background-color: var(--purple-bg-light); /* Light purple background */
+  color: var(--purple-main);
+  background-color: var(--purple-bg-light);
   padding: 0.3rem 0.8rem;
   border-radius: 0.5rem;
-  display: inline-block; /* Makes background only cover text */
+  display: inline-block;
   margin-bottom: 1.5rem;
 }
 
 @media (max-width: 991px) {
   .hero-tagline {
-    margin: 0 auto 1.5rem auto; /* Center on mobile */
+    margin: 0 auto 1.5rem auto;
   }
 }
 
 .hero-title {
-  font-size: 3.5rem; /* Large heading */
+  font-size: 3.5rem;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.2;
@@ -64,7 +61,7 @@
 }
 
 .hero-title .purple-text {
-  color: var(--purple-main); /* Specific purple for "professional gear" */
+  color: var(--purple-main);
 }
 
 @media (max-width: 767px) {
@@ -95,13 +92,13 @@
 
 @media (max-width: 991px) {
   .hero-buttons {
-    justify-content: center; /* Center buttons on mobile */
+    justify-content: center;
   }
 }
 
 @media (max-width: 600px) {
   .hero-buttons {
-    flex-direction: column; /* Stack buttons vertically on very small screens */
+    flex-direction: column;
     gap: 1rem;
   }
 }
@@ -117,7 +114,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
 }
 
 .primary-button {
@@ -127,7 +124,7 @@
     var(--purple-light)
   );
   color: white;
-  box-shadow: 0 4px 8px var(--glow-color); /* Subtle glow effect */
+  box-shadow: 0 4px 8px var(--glow-color);
 }
 
 .primary-button:hover {
@@ -150,41 +147,44 @@
   flex: 1;
   min-width: 300px;
   position: relative;
-  padding: 1.5rem; /* Padding for the glow effect */
-  background-color: var(
-    --light-grey-bg
-  ); /* Use light grey for image background container */
+  padding: 1.5rem;
+  background-color: var(--card-background);
   border-radius: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* General shadow for the image container */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05),
+    0 0 20px 5px rgba(107, 70, 193, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4/3;
+  overflow: hidden;
 }
 
 .hero-image {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 1rem; /* Rounded corners for the image itself */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Inner shadow for the image */
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: none;
 }
 
-/* Lightbulb Icon on Image */
 .lightbulb-icon-container {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background-color: var(--lightbulb-bg);
-  border: 2px solid var(--lightbulb-border);
+  background-color: #ffffff;
+  border: 1px solid rgba(224, 224, 224, 0.5);
   border-radius: 50%;
   width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   z-index: 10;
 }
 
 .lightbulb-icon {
-  color: var(--lightbulb-icon);
+  color: #f97316;
   width: 32px;
   height: 32px;
 }

@@ -1,4 +1,3 @@
-// src/pages/Home/Home.jsx - Home Page component
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Lightbulb } from 'lucide-react';
@@ -32,16 +31,17 @@ const Home = () => {
                 <Lightbulb size={64} className="lightbulb-icon" />
             </div>
           <img
-            src="https://placehold.co/600x400/e0e0e0/505050?text=Camera+Shoot"
-            alt="Photographer with camera"
+            src="" 
+            alt=""
             className="hero-image"
           />
         </div>
       </div>
 
-      {/* Add more sections here like testimonials, how it works, etc. */}
+      {/* Add more sections here */}
     </div>
   );
 };
 
 export default Home;
+
