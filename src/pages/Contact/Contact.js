@@ -21,7 +21,7 @@ const Contact = () => {
           <p className="contact-card-text">
             Visit us at Cianda House, Koinange Street, near CJ's in Town CBD, Nairobi, Kenya
           </p>
-          <a href="https://maps.app.goo.gl/your-google-maps-link-here" target="_blank" rel="noopener noreferrer" className="view-map-link">
+          <a href="https://www.google.com/maps/place/Cianda+House/@-1.2833502,36.8156966,17z/data=!3m1!4b1!4m6!3m5!1s0x182f10d3dd7dfc47:0xfd9e361041633eb7!8m2!3d-1.2833556!4d36.8182715!16s%2Fg%2F11g9nm99g_?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="view-map-link">
             View on Map
           </a>
         </div>
