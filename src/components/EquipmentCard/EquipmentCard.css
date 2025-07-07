@@ -1,5 +1,3 @@
-/* src/components/EquipmentCard/EquipmentCard.css - Equipment Card styling */
-
 .equipment-card {
   background-color: var(--card-background);
   border-radius: 1.25rem; /* 20px */
@@ -118,6 +116,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 2.5rem; /* Explicitly set height to match add-to-cart-button */
+  box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
 
 .details-button:hover {
@@ -141,9 +141,10 @@
   align-items: center;
   justify-content: center;
   width: 2.5rem;
-  height: 2.5rem;
+  height: 2.5rem; /* Fixed height */
   cursor: pointer;
   transition: opacity 0.2s ease;
+  box-sizing: border-box; /* Ensure padding and border are included in the dimensions */
 }
 
 .add-to-cart-button .cart-icon {
@@ -202,7 +203,7 @@
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
-    height: auto;
+    height: auto; /* Allow height to be auto when stacked vertically */
   }
 
   .add-to-cart-button .cart-icon {
