@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { differenceInCalendarDays, parseISO, isValid } from "date-fns";
-import { AddCircleOutline, RemoveCircleOutline, DeleteOutline, InfoOutlined } from "@mui/icons-material"; // Removed CalendarToday
+import { AddCircleOutline, RemoveCircleOutline, DeleteOutline, InfoOutlined } from "@mui/icons-material";
 
 import './Booking.css';
 
@@ -50,13 +50,29 @@ const Booking = () => {
     if (!itemToUpdate) return;
 
     let newQuantity = itemToUpdate.quantity || 1;
+    // Extract available stock from the item's availability string (e.g., "1 available")
+    // Assuming availability is always in the format "X available" or "Out of Stock"
+    const availableStockMatch = itemToUpdate.availability ? itemToUpdate.availability.match(/(\d+)\s+available/) : null;
+    const availableStock = availableStockMatch ? parseInt(availableStockMatch[1], 10) : 0;
+
     if (type === 'increase') {
-      newQuantity += 1;
+      if (availableStock > 0 && newQuantity < availableStock) {
+        newQuantity += 1;
+      } else if (availableStock === 0) {
+        console.warn(`Cannot increase quantity for ${itemToUpdate.name}: Out of Stock.`);
+        // You might want to display a user-friendly message here
+      } else {
+        console.warn(`Cannot increase quantity for ${itemToUpdate.name}: Maximum stock (${availableStock}) reached.`);
+        // You might want to display a user-friendly message here
+      }
     } else if (type === 'decrease' && newQuantity > 1) {
       newQuantity -= 1;
     }
 
-    updateCartItem(itemId, { quantity: newQuantity });
+    // Only update if the quantity has actually changed (or if it's a valid decrease)
+    if (newQuantity !== (itemToUpdate.quantity || 1)) {
+        updateCartItem(itemId, { quantity: newQuantity });
+    }
   };
 
   const handleDeleteItem = (itemId) => {
@@ -102,18 +118,25 @@ const Booking = () => {
               <div className="main-item-info">
                 <h1 className="main-item-name">{item.name}</h1>
                 <p className="main-item-price">KES {item.price.toLocaleString()}/day</p>
-              </div>
-              <div className="quantity-controls">
-                <button onClick={() => handleQuantityChange(item.id, 'decrease')} className="quantity-button">
-                  <RemoveCircleOutline />
-                </button>
-                <span className="quantity-display">{item.quantity || 1}</span>
-                <button onClick={() => handleQuantityChange(item.id, 'increase')} className="quantity-button">
-                  <AddCircleOutline />
-                </button>
-                <button onClick={() => handleDeleteItem(item.id)} className="delete-button">
-                  <DeleteOutline />
-                </button>
+                <div className="quantity-controls">
+                  <button onClick={() => handleQuantityChange(item.id, 'decrease')} className="quantity-button" disabled={(item.quantity || 1) <= 1}>
+                    <RemoveCircleOutline />
+                  </button>
+                  <span className="quantity-display">{item.quantity || 1}</span>
+                  <button
+                    onClick={() => handleQuantityChange(item.id, 'increase')}
+                    className="quantity-button"
+                    disabled={
+                        (item.availability && item.availability.toLowerCase().includes('out of stock')) ||
+                        ((item.quantity || 1) >= (parseInt(item.availability?.match(/(\d+)\s+available/)?.[1], 10) || 0))
+                    }
+                  >
+                    <AddCircleOutline />
+                  </button>
+                  <button onClick={() => handleDeleteItem(item.id)} className="delete-button">
+                    <DeleteOutline />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

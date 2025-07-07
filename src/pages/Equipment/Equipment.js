@@ -10,7 +10,7 @@ const equipmentList = [
     price: 1000, 
     image: "/Images/Amaran P60C.jpeg", 
     category: "lights",
-    availability: "1 available",
+    availability: "4 available",
   },
   {
     id: 2,

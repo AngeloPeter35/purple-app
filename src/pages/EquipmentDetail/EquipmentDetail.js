@@ -10,7 +10,7 @@ const equipmentList = [
     price: 1000,
     image: "/Images/Amaran P60C.jpeg",
     category: "lights",
-    availability: "1 available",
+    availability: "4 available",
     description: "A professional RGBWW LED panel light offering full color control, high CRI, and a wide CCT range for superior lighting effects. Perfect for studio and on-location shoots.",
     features: [
       "2500K-7500K CCT Range",

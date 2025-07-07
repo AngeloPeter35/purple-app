@@ -1,4 +1,3 @@
-// src/pages/CartPage/CartPage.jsx - Cart Page component
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
@@ -17,13 +16,24 @@ export default function CartPage() {
     if (!item) return;
 
     let newQuantity = item.quantity || 1;
+    const availableStockMatch = item.availability ? item.availability.match(/(\d+)\s+available/) : null;
+    const availableStock = availableStockMatch ? parseInt(availableStockMatch[1], 10) : 0;
+
     if (type === 'increase') {
+      if (availableStock > 0 && newQuantity < availableStock) {
         newQuantity += 1;
+      } else if (availableStock === 0) {
+        console.warn(`Cannot increase quantity for ${item.name}: Out of Stock.`);
+      } else {
+        console.warn(`Cannot increase quantity for ${item.name}: Maximum stock (${availableStock}) reached.`);
+      }
     } else if (type === 'decrease' && newQuantity > 1) {
-        newQuantity -= 1;
+      newQuantity -= 1;
     }
 
-    updateCartItem(id, { quantity: newQuantity });
+    if (newQuantity !== (item.quantity || 1)) {
+        updateCartItem(id, { quantity: newQuantity });
+    }
   };
 
   return (
@@ -45,7 +55,13 @@ export default function CartPage() {
                     <div className="item-quantity-controls">
                         <button onClick={() => handleQuantityChange(item.id, 'decrease')} disabled={(item.quantity || 1) <= 1}>-</button>
                         <span>{item.quantity || 1}</span>
-                        <button onClick={() => handleQuantityChange(item.id, 'increase')}>+</button>
+                        <button
+                            onClick={() => handleQuantityChange(item.id, 'increase')}
+                            disabled={
+                                (item.availability && item.availability.toLowerCase().includes('out of stock')) ||
+                                ((item.quantity || 1) >= (parseInt(item.availability?.match(/(\d+)\s+available/)?.[1], 10) || 0))
+                            }
+                        >+</button>
                     </div>
                   </div>
                 </div>
