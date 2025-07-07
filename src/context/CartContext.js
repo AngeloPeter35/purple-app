@@ -1,4 +1,3 @@
-// src/context/CartContext.jsx - Cart Provider
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
@@ -26,18 +25,30 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     setCartItems((prev) => {
-      // Check if the item (by ID) is already in the cart, if so, just update its quantity
-      // Otherwise, add it as a new item.
-      const existingItemIndex = prev.findIndex(cartItem => cartItem.id === item.id);
+      // Validate item and its ID
+      if (!item || item.id === undefined || item.id === null) {
+        console.error("Attempted to add an item without a valid ID:", item);
+        return prev; // Return previous state if item or ID is invalid
+      }
+
+      // Normalize item ID to string for consistent comparison
+      const itemId = String(item.id);
+
+      // Check if the item (by normalized ID) is already in the cart
+      const existingItemIndex = prev.findIndex(cartItem => String(cartItem.id) === itemId);
+
       if (existingItemIndex > -1) {
+        // If item exists, create a new array with updated quantity for the existing item
         const updatedCart = [...prev];
         updatedCart[existingItemIndex] = {
           ...updatedCart[existingItemIndex],
-          quantity: (updatedCart[existingItemIndex].quantity || 1) + 1 // Increment quantity
+          // Increment quantity, defaulting to 0 if quantity is undefined/null, then add 1
+          quantity: (updatedCart[existingItemIndex].quantity || 0) + 1
         };
         return updatedCart;
       } else {
-        return [...prev, { ...item, quantity: 1 }]; // Add new item with quantity 1
+        // If item does not exist, add it as a new item with quantity 1
+        return [...prev, { ...item, quantity: 1 }];
       }
     });
   };

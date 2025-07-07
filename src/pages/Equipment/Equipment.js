@@ -1,6 +1,5 @@
-// src/pages/Equipment/Equipment.jsx - Equipment Page component
 import React, { useState } from "react";
-import EquipmentCard from "../../components/EquipmentCard/EquipmentCard"; // Corrected relative path
+import EquipmentCard from "../../components/EquipmentCard/EquipmentCard"; 
 
 import './Equipment.css';
 
@@ -56,7 +55,7 @@ const equipmentList = [
 ];
 
 const Equipment = () => {
-  const [priceRange, setPriceRange] = useState(100000);
+  const [priceRange, setPriceRange] = useState(4000);
   const [availabilityFilter, setAvailabilityFilter] = useState("All");
 
   const filteredEquipment = equipmentList.filter(item => {
@@ -86,13 +85,13 @@ const Equipment = () => {
             <input
               type="range"
               min="0"
-              max="10000"
-              step="100"
+              max="4000"
+              step="50"
               value={priceRange}
               onChange={(e) => setPriceRange(Number(e.target.value))}
               className="price-slider"
               style={{
-                background: `linear-gradient(to right, var(--purple-main) 0%, var(--purple-main) ${(priceRange / 10000) * 100}%, var(--light-grey-bg) ${(priceRange / 10000) * 100}%, var(--light-grey-bg) 100%)`
+                background: `linear-gradient(to right, var(--purple-main) 0%, var(--purple-main) ${(priceRange / 4000) * 100}%, var(--light-grey-bg) ${(priceRange / 4000) * 100}%, var(--light-grey-bg) 100%)`
               }}
             />
           </div>
@@ -129,7 +128,7 @@ const Equipment = () => {
             </div>
           </div>
           <button className="reset-button" onClick={() => {
-            setPriceRange(10000);
+            setPriceRange(4000);
             setAvailabilityFilter("All");
           }}>
             Reset Filters

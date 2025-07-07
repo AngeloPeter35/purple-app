@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart } from "@mui/icons-material"; 
+import { ShoppingCart } from "@mui/icons-material";
 import { useCart } from "../../context/CartContext";
 
 import './EquipmentCard.css';
@@ -8,8 +8,26 @@ import './EquipmentCard.css';
 export default function EquipmentCard({ equipment }) {
   const { addToCart, cartItems } = useCart();
 
-  const itemIsInCart = cartItems.some((cartItem) => cartItem.id === equipment.id);
-  const isAddToCartDisabled = itemIsInCart || equipment.availability === "Out of Stock";
+  // Find the current item in the cart to get its quantity
+  const currentItemInCart = cartItems.find((cartItem) => String(cartItem.id) === String(equipment.id));
+  const currentQuantityInCart = currentItemInCart ? currentItemInCart.quantity : 0;
+
+  // Parse available quantity from the availability string
+  const parseAvailability = (availabilityString) => {
+    if (availabilityString === "Out of Stock") {
+      return 0;
+    }
+    const match = availabilityString.match(/(\d+)\s+available/);
+    return match ? parseInt(match[1], 10) : 0; // Default to 0 if no number found
+  };
+
+  const availableStock = parseAvailability(equipment.availability);
+
+  // Determine if the add to cart button should be disabled
+  // It's disabled if:
+  // 1. The item is explicitly "Out of Stock"
+  // 2. The quantity in the cart is equal to or exceeds the available stock
+  const isAddToCartDisabled = equipment.availability === "Out of Stock" || currentQuantityInCart >= availableStock;
 
   return (
     <div className="equipment-card">

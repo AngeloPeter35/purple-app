@@ -1,11 +1,9 @@
-/* src/pages/EquipmentDetail/EquipmentDetail.css - Styling for Individual Equipment Page */
-
 .equipment-detail-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2.5rem 1.5rem;
-  background-color: var(--bg-primary); /* Uses primary background from theme */
-  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  background-color: var(--bg-primary);
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +49,7 @@
   border-radius: 1.25rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: row; /* Default desktop layout */
+  flex-direction: row;
   gap: 2.5rem;
   padding: 2.5rem;
   width: 100%;
@@ -59,16 +57,14 @@
 }
 
 @media (max-width: 850px) {
-  /* Adjust for smaller screens (e.g., tablets/larger phones) */
   .equipment-detail-card {
-    flex-direction: column; /* Stack image and content vertically */
+    flex-direction: column;
     padding: 2rem;
     gap: 2rem;
   }
 }
 
 @media (max-width: 600px) {
-  /* Smaller phones */
   .equipment-detail-card {
     padding: 1.5rem;
     gap: 1.5rem;
@@ -76,8 +72,8 @@
 }
 
 .detail-image-section {
-  flex-shrink: 0; /* Prevents image section from shrinking */
-  width: 400px; /* Fixed width for the image section on desktop */
+  flex-shrink: 0;
+  width: 400px;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -89,8 +85,8 @@
 
 @media (max-width: 850px) {
   .detail-image-section {
-    width: 100%; /* Full width on stacked layout */
-    height: 250px; /* Fixed height for image on smaller screens */
+    width: 100%;
+    height: 250px;
   }
 }
 
@@ -136,7 +132,7 @@
 }
 
 .detail-content-section {
-  flex-grow: 1; /* Takes up remaining space */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -163,7 +159,7 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color); /* Subtle separator */
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
   margin-top: 1.5rem;
 }
@@ -186,23 +182,23 @@
   color: var(--text-primary);
   margin-bottom: 0.75rem;
   position: relative;
-  padding-left: 1.5rem; /* Space for custom bullet */
+  padding-left: 1.5rem;
 }
 
 .detail-features-list li::before {
-  content: "•"; /* Simple dot bullet */
+  content: "•";
   color: var(--purple-main);
   position: absolute;
   left: 0;
   font-weight: 700;
-  font-size: 1.2em; /* Make bullet slightly larger */
-  line-height: 1; /* Align bullet vertically */
+  font-size: 1.2em;
+  line-height: 1;
 }
 
 .detail-actions {
   display: flex;
   gap: 1rem;
-  margin-top: auto; /* Pushes buttons to the bottom */
+  margin-top: auto;
   width: 100%;
 }
 
@@ -210,6 +206,7 @@
 .book-now-button {
   flex: 1;
   padding: 1rem 1.5rem;
+  height: 3.5rem; /* Explicitly set height for consistent dimensions */
   border-radius: 0.75rem;
   font-size: 1.125rem;
   font-weight: 600;
@@ -217,7 +214,8 @@
   text-align: center;
   transition: opacity 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
 .add-to-cart-button {
@@ -248,7 +246,7 @@
   border: 2px solid var(--purple-main);
   color: var(--purple-main);
   box-shadow: none;
-  display: flex; /* Make it a flex container to center text */
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -273,7 +271,6 @@
   color: var(--purple-light);
 }
 
-/* Mobile Responsiveness for details page */
 @media (max-width: 600px) {
   .detail-name {
     font-size: 1.5rem;
